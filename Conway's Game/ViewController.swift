@@ -10,7 +10,7 @@ import UIKit
 final class MainViewController: UIViewController {
 
     //MARK: - UI Elements
-    private lazy var areaOfSquaresView = AreaView(frame: CGRect(x: 0, y: view.frame.height / 4, width: view.frame.width, height: view.frame.width))
+    private lazy var worldView = WorldView(frame: CGRect(x: 0, y: view.frame.height / 4, width: view.frame.width, height: view.frame.width))
     
     private let reloadAreaButton: UIButton = {
         let button = UIButton()
@@ -41,38 +41,38 @@ final class MainViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(areaOfSquaresView.frame)
     }
     
     
     //MARK: - Logic of UI Elements
     @objc private func reloadAllArea() {
-        self.areaOfSquaresView.ChangeColorInLine(count: 50)
+        self.worldView.makeStap()
     }
     
     
     //MARK: - Setting UI Elements
     private func addViews() {
-        view.addSubview(areaOfSquaresView)
+        view.addSubview(worldView)
         view.addSubview(reloadAreaButton)
     }
     
     private func setViews() {
-        areaOfSquaresView.translatesAutoresizingMaskIntoConstraints = false
+        worldView.translatesAutoresizingMaskIntoConstraints = false
         reloadAreaButton.addTarget(self, action: #selector(reloadAllArea), for: [.touchUpInside, .touchUpOutside])
         view.backgroundColor = .white
-        self.areaOfSquaresView.makePictureOfSquares(withNumberOfSquares: 50)
+        self.worldView.createRandomPositions(numberOfPositions: 7000)
+        self.worldView.createWorld()
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            areaOfSquaresView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            areaOfSquaresView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            areaOfSquaresView.widthAnchor.constraint(equalToConstant: view.frame.width),
-            areaOfSquaresView.heightAnchor.constraint(equalToConstant: view.frame.width),
+            worldView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            worldView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            worldView.widthAnchor.constraint(equalToConstant: view.frame.width),
+            worldView.heightAnchor.constraint(equalToConstant: view.frame.width),
             
             reloadAreaButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            reloadAreaButton.topAnchor.constraint(equalTo: areaOfSquaresView.bottomAnchor, constant: 50 )
+            reloadAreaButton.topAnchor.constraint(equalTo: worldView.bottomAnchor, constant: 50 )
             
         ])
     }

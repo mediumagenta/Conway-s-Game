@@ -11,7 +11,9 @@
 		CEB4BB37293A035E0042C7B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB36293A035E0042C7B2 /* SceneDelegate.swift */; };
 		CEB4BB39293A035E0042C7B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB38293A035E0042C7B2 /* ViewController.swift */; };
 		CEB4BB3E293A03600042C7B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB4BB3D293A03600042C7B2 /* Assets.xcassets */; };
-		CEB4BB49293A0BB90042C7B2 /* AreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB48293A0BB90042C7B2 /* AreaView.swift */; };
+		CEB4BB49293A0BB90042C7B2 /* WorldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB48293A0BB90042C7B2 /* WorldView.swift */; };
+		CEB4BB4B293A9FA30042C7B2 /* WorldManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB4A293A9FA30042C7B2 /* WorldManager.swift */; };
+		CEB4BB4D293BEED60042C7B2 /* CellState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB4C293BEED60042C7B2 /* CellState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +23,9 @@
 		CEB4BB38293A035E0042C7B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEB4BB3D293A03600042C7B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEB4BB42293A03600042C7B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEB4BB48293A0BB90042C7B2 /* AreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaView.swift; sourceTree = "<group>"; };
+		CEB4BB48293A0BB90042C7B2 /* WorldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldView.swift; sourceTree = "<group>"; };
+		CEB4BB4A293A9FA30042C7B2 /* WorldManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldManager.swift; sourceTree = "<group>"; };
+		CEB4BB4C293BEED60042C7B2 /* CellState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +61,9 @@
 				CEB4BB34293A035E0042C7B2 /* AppDelegate.swift */,
 				CEB4BB36293A035E0042C7B2 /* SceneDelegate.swift */,
 				CEB4BB38293A035E0042C7B2 /* ViewController.swift */,
-				CEB4BB48293A0BB90042C7B2 /* AreaView.swift */,
+				CEB4BB4A293A9FA30042C7B2 /* WorldManager.swift */,
+				CEB4BB4C293BEED60042C7B2 /* CellState.swift */,
+				CEB4BB48293A0BB90042C7B2 /* WorldView.swift */,
 				CEB4BB3D293A03600042C7B2 /* Assets.xcassets */,
 				CEB4BB42293A03600042C7B2 /* Info.plist */,
 			);
@@ -134,7 +140,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB4BB39293A035E0042C7B2 /* ViewController.swift in Sources */,
-				CEB4BB49293A0BB90042C7B2 /* AreaView.swift in Sources */,
+				CEB4BB4D293BEED60042C7B2 /* CellState.swift in Sources */,
+				CEB4BB4B293A9FA30042C7B2 /* WorldManager.swift in Sources */,
+				CEB4BB49293A0BB90042C7B2 /* WorldView.swift in Sources */,
 				CEB4BB35293A035E0042C7B2 /* AppDelegate.swift in Sources */,
 				CEB4BB37293A035E0042C7B2 /* SceneDelegate.swift in Sources */,
 			);

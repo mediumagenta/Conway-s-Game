@@ -60,7 +60,7 @@ final class MainViewController: UIViewController {
         worldView.translatesAutoresizingMaskIntoConstraints = false
         reloadAreaButton.addTarget(self, action: #selector(reloadAllArea), for: [.touchUpInside, .touchUpOutside])
         view.backgroundColor = .white
-        self.worldView.createRandomPositions(numberOfPositions: 7000)
+        self.worldView.createRandomPositions(numberOfPositions: 6000)
         self.worldView.createWorld()
     }
     

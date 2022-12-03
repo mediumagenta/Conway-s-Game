@@ -12,7 +12,7 @@ final class WorldView: UIView {
     
 
     var worldAreaSize = 300
-    var worldManager = WorldManager(sizeOfWorldArea: 300, numOfRandomLifeCells: 2000)
+    var worldManager = WorldManager(sizeOfWorldArea: 300, numOfRandomLifeCells: 6000)
     
     func createRandomPositions(numberOfPositions count: Int) {
         worldManager.createRandomLifeCells(numberOfCells: count)
@@ -23,16 +23,42 @@ final class WorldView: UIView {
         createWorld()
     }
     
+    private func floatFromKey(_ str: String) -> (x: CGFloat, y: CGFloat) {
+        let strArray = str.components(separatedBy: " ")
+        guard strArray.count == 2,
+              let xFloat = Float(strArray[0]),
+              let yFloat = Float(strArray[1]) else {
+            print("error in intForKey"); return (0,0)}
+        return (x: CGFloat(xFloat), y: CGFloat(yFloat))
+    }
+    
     func createWorld() {
         let startTime = CFAbsoluteTimeGetCurrent()
         let w = bounds.width / CGFloat(worldAreaSize)
-        layer.sublayers?.removeAll()
-        for y in 0..<worldAreaSize {
-            for x in 0..<worldAreaSize {
-                let cell = worldManager.checkStatusOfCell(x: x, y: y)
-                createCell(x: w*CGFloat(x), y: w*CGFloat(y), width: w, height: w, status: cell)
+
+        if let sublayersCount = layer.sublayers?.count, sublayersCount > 2000 {
+            layer.sublayers?.forEach({ layer in
+                if let layerName = layer.name {
+                    let key = floatFromKey(layerName)
+                    let cell = worldManager.checkStatusOfCell(x: Int(key.x / w), y: Int(key.y / w))
+                    if cell == .wasWhiteBecameBlack || cell == .wasBlackBecameWhite {
+                        layer.removeFromSuperlayer()
+                        createCell(x: key.x, y: key.y, width: w, height: w, status: cell)
+                    } else {
+                        // нет изменений
+                    }
+                }
+            })
+        } else {
+            for y in 0..<worldAreaSize {
+                for x in 0..<worldAreaSize {
+                    let cell = worldManager.checkStatusOfCell(x: x, y: y)
+                    createCell(x: w*CGFloat(x), y: w*CGFloat(y), width: w, height: w, status: cell)
+                }
             }
         }
+        
+        
         
         print("\nМир создан за \(CFAbsoluteTimeGetCurrent() - startTime)")
     }
@@ -61,7 +87,7 @@ final class WorldView: UIView {
             startColorAnimating = fillColor
             durationOfAnimation = 0
         case .errorFindInDictionary:
-            fillColor = UIColor.red.cgColor
+            fillColor = UIColor.white.cgColor
             startColorAnimating = fillColor
             durationOfAnimation = 0
         }
@@ -73,7 +99,7 @@ final class WorldView: UIView {
         fillColorAnimation.fromValue = startColorAnimating
         fillColorAnimation.toValue = fillColor
         rectangle.add(fillColorAnimation, forKey: "fillColor")
-        layer.name = "\(x) \(y)"
+        rectangle.name = "\(x) \(y)"
         layer.addSublayer(rectangle)
     }   
     

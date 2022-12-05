@@ -20,7 +20,7 @@ final class MainViewController: UIViewController {
     
     //MARK: - UI Elements
     private let worldView = WorldView()
-    private let gameManagementInterface = GameManagementInterfaceView()
+    private let gameManagementInterfaceView = GameManagementInterfaceView()
     
     //MARK: - ViewController methods
     override func viewDidLoad() {
@@ -34,12 +34,12 @@ final class MainViewController: UIViewController {
     
     //MARK: - Logic of UI Elements
     private func addTargets() {
-        gameManagementInterface.startOrStopGameButton.addTarget(self, action: #selector(startStopGame), for: [.touchUpInside, .touchUpOutside])
-        gameManagementInterface.addRandomLifeCellsButton.addTarget(self, action: #selector(addRandomLifeCells), for: [.touchUpInside, .touchUpOutside])
-        gameManagementInterface.worldSizeSlider.addTarget(self, action: #selector(worldAreaSliderWasChanged), for: [.valueChanged])
-        gameManagementInterface.worldSizeSlider.addTarget(self, action: #selector(worldAreaSliderTouchUp), for: [.touchUpInside, .touchUpOutside])
-        gameManagementInterface.countRandomLifeCellsSlider.addTarget(self, action: #selector(coefficientRandomLifeCellsSliderTouchUp), for: [.touchUpInside, .touchUpOutside])
-        gameManagementInterface.animationSpeedSlider.addTarget(self, action: #selector(coefficientAnimatingSpeedSliderTouchUp), for: [.touchUpInside, .touchUpOutside])
+        gameManagementInterfaceView.startOrStopGameButton.addTarget(self, action: #selector(startStopGame), for: [.touchUpInside, .touchUpOutside])
+        gameManagementInterfaceView.addRandomLifeCellsButton.addTarget(self, action: #selector(addRandomLifeCells), for: [.touchUpInside, .touchUpOutside])
+        gameManagementInterfaceView.worldSizeSlider.addTarget(self, action: #selector(worldAreaSliderWasChanged), for: [.valueChanged])
+        gameManagementInterfaceView.worldSizeSlider.addTarget(self, action: #selector(worldAreaSliderTouchUp), for: [.touchUpInside, .touchUpOutside])
+        gameManagementInterfaceView.countRandomLifeCellsSlider.addTarget(self, action: #selector(coefficientRandomLifeCellsSliderTouchUp), for: [.touchUpInside, .touchUpOutside])
+        gameManagementInterfaceView.animationSpeedSlider.addTarget(self, action: #selector(coefficientAnimatingSpeedSliderTouchUp), for: [.touchUpInside, .touchUpOutside])
 
     }
     
@@ -57,7 +57,7 @@ final class MainViewController: UIViewController {
     
     @objc private func worldAreaSliderTouchUp(_ sender: UISlider) {
         viewModel.finishChangeAreaSize(toSize: Int(sender.value))
-        gameManagementInterface.centerWorldSizeSliderLabel.text = "\(Int(sender.value))"
+        gameManagementInterfaceView.centerWorldSizeSliderLabel.text = "\(Int(sender.value))"
     }
     
     @objc private func coefficientRandomLifeCellsSliderTouchUp(_ sender: UISlider) {
@@ -89,13 +89,13 @@ final class MainViewController: UIViewController {
     private func updateViewController() {
         switch statesViewController {
         case .startedGame:
-            gameManagementInterface.disableElements()
+            gameManagementInterfaceView.disableElements()
         case .stopedGame:
-            gameManagementInterface.enableElements()
+            gameManagementInterfaceView.enableElements()
         case .addedRandomLifeCells:
-            gameManagementInterface.startOrStopGameButton.setTitle("Запустить игру", for: .normal)
+            gameManagementInterfaceView.startOrStopGameButton.setTitle("Запустить игру", for: .normal)
         case .wasChangedWorldAreaSizeSlider(let newValue):
-            gameManagementInterface.centerWorldSizeSliderLabel.text = "\(Int(newValue))"
+            gameManagementInterfaceView.centerWorldSizeSliderLabel.text = "\(Int(newValue))"
         case .showAlertOfEndGame:
             showStopGameAlertController()
         }
@@ -105,13 +105,13 @@ final class MainViewController: UIViewController {
     //MARK: - Setting UI Elements
     private func addViews() {
         view.addSubview(worldView)
-        view.addSubview(gameManagementInterface)
+        view.addSubview(gameManagementInterfaceView)
     }
     
     private func setViews() {
         view.backgroundColor = .white
         worldView.translatesAutoresizingMaskIntoConstraints = false
-        gameManagementInterface.translatesAutoresizingMaskIntoConstraints = false
+        gameManagementInterfaceView.translatesAutoresizingMaskIntoConstraints = false
         
         viewModel = MainWorldViewViewModel()
         addTargets()
@@ -126,10 +126,10 @@ final class MainViewController: UIViewController {
             worldView.widthAnchor.constraint(equalToConstant: view.frame.width),
             worldView.heightAnchor.constraint(equalToConstant: view.frame.width),
             
-            gameManagementInterface.topAnchor.constraint(equalTo: worldView.bottomAnchor),
-            gameManagementInterface.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            gameManagementInterface.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            gameManagementInterface.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            gameManagementInterfaceView.topAnchor.constraint(equalTo: worldView.bottomAnchor),
+            gameManagementInterfaceView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            gameManagementInterfaceView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            gameManagementInterfaceView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
 }

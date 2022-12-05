@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DataToPresent {
+struct AllDataAboutWorldToPresent {
     var worldSize: Int = 0
     var dictionaryOfCellsInWorld: [String: CellState] = [:]
 }

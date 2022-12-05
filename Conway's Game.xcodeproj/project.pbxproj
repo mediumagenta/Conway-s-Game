@@ -19,9 +19,11 @@
 		CEB4BB53293CB9BD0042C7B2 /* KeyCoderForCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB52293CB9BD0042C7B2 /* KeyCoderForCell.swift */; };
 		CEB4BB55293CD06E0042C7B2 /* WorldViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB54293CD06E0042C7B2 /* WorldViewViewModel.swift */; };
 		CEB4BB57293CD5830042C7B2 /* MainViewViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB56293CD5830042C7B2 /* MainViewViewModelProtocol.swift */; };
-		CEB4BB5E293D2D0D0042C7B2 /* ViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB5D293D2D0D0042C7B2 /* ViewData.swift */; };
+		CEB4BB5E293D2D0D0042C7B2 /* WorldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB5D293D2D0D0042C7B2 /* WorldState.swift */; };
 		CEB4BB60293D2D2C0042C7B2 /* GamingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB5F293D2D2C0042C7B2 /* GamingStatus.swift */; };
-		CEB4BB63293D2D620042C7B2 /* DataToPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB62293D2D620042C7B2 /* DataToPresent.swift */; };
+		CEB4BB63293D2D620042C7B2 /* AllDataAboutWorldToPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB62293D2D620042C7B2 /* AllDataAboutWorldToPresent.swift */; };
+		CEB4BB65293D3C400042C7B2 /* GameManagementInterfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB64293D3C400042C7B2 /* GameManagementInterfaceView.swift */; };
+		CEB4BB67293D71C30042C7B2 /* MainViewControllerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB4BB66293D71C30042C7B2 /* MainViewControllerState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,9 +41,11 @@
 		CEB4BB52293CB9BD0042C7B2 /* KeyCoderForCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCoderForCell.swift; sourceTree = "<group>"; };
 		CEB4BB54293CD06E0042C7B2 /* WorldViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldViewViewModel.swift; sourceTree = "<group>"; };
 		CEB4BB56293CD5830042C7B2 /* MainViewViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModelProtocol.swift; sourceTree = "<group>"; };
-		CEB4BB5D293D2D0D0042C7B2 /* ViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewData.swift; sourceTree = "<group>"; };
+		CEB4BB5D293D2D0D0042C7B2 /* WorldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldState.swift; sourceTree = "<group>"; };
 		CEB4BB5F293D2D2C0042C7B2 /* GamingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamingStatus.swift; sourceTree = "<group>"; };
-		CEB4BB62293D2D620042C7B2 /* DataToPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataToPresent.swift; sourceTree = "<group>"; };
+		CEB4BB62293D2D620042C7B2 /* AllDataAboutWorldToPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDataAboutWorldToPresent.swift; sourceTree = "<group>"; };
+		CEB4BB64293D3C400042C7B2 /* GameManagementInterfaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagementInterfaceView.swift; sourceTree = "<group>"; };
+		CEB4BB66293D71C30042C7B2 /* MainViewControllerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,29 +78,65 @@
 		CEB4BB33293A035E0042C7B2 /* Conway's Game */ = {
 			isa = PBXGroup;
 			children = (
-				CEB4BB34293A035E0042C7B2 /* AppDelegate.swift */,
-				CEB4BB36293A035E0042C7B2 /* SceneDelegate.swift */,
-				CEB4BB59293D2C830042C7B2 /* MainViewController */,
-				CEB4BB58293D2C730042C7B2 /* WorldView */,
-				CEB4BB5B293D2CBB0042C7B2 /* Managers */,
+				CEB4BB6E293DD33E0042C7B2 /* MainVC Module */,
+				CEB4BB68293D796C0042C7B2 /* ApplicationLayer */,
+				CEB4BB5B293D2CBB0042C7B2 /* CoreLayer */,
+				CEB4BB6D293DC47E0042C7B2 /* Models */,
 				CEB4BB5A293D2CAB0042C7B2 /* Enums */,
 				CEB4BB5C293D2CC60042C7B2 /* Protocols */,
-				CEB4BB3D293A03600042C7B2 /* Assets.xcassets */,
-				CEB4BB42293A03600042C7B2 /* Info.plist */,
+				CEB4BB6C293D79E00042C7B2 /* SupportingFiles */,
 			);
 			path = "Conway's Game";
 			sourceTree = "<group>";
 		};
-		CEB4BB58293D2C730042C7B2 /* WorldView */ = {
+		CEB4BB58293D2C730042C7B2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CEB4BB48293A0BB90042C7B2 /* WorldView.swift */,
-				CEB4BB54293CD06E0042C7B2 /* WorldViewViewModel.swift */,
+				CEB4BB6A293D79B00042C7B2 /* WorldView */,
+				CEB4BB6B293D79BF0042C7B2 /* GameManagementInterfaceView */,
 			);
-			path = WorldView;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		CEB4BB59293D2C830042C7B2 /* MainViewController */ = {
+		CEB4BB5A293D2CAB0042C7B2 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				CEB4BB5F293D2D2C0042C7B2 /* GamingStatus.swift */,
+				CEB4BB66293D71C30042C7B2 /* MainViewControllerState.swift */,
+				CEB4BB4C293BEED60042C7B2 /* CellState.swift */,
+				CEB4BB5D293D2D0D0042C7B2 /* WorldState.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		CEB4BB5B293D2CBB0042C7B2 /* CoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+				CEB4BB4A293A9FA30042C7B2 /* WorldManager.swift */,
+				CEB4BB52293CB9BD0042C7B2 /* KeyCoderForCell.swift */,
+			);
+			path = CoreLayer;
+			sourceTree = "<group>";
+		};
+		CEB4BB5C293D2CC60042C7B2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CEB4BB56293CD5830042C7B2 /* MainViewViewModelProtocol.swift */,
+				CEB4BB50293C09820042C7B2 /* WorldViewViewModelProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CEB4BB68293D796C0042C7B2 /* ApplicationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				CEB4BB34293A035E0042C7B2 /* AppDelegate.swift */,
+				CEB4BB36293A035E0042C7B2 /* SceneDelegate.swift */,
+			);
+			path = ApplicationLayer;
+			sourceTree = "<group>";
+		};
+		CEB4BB69293D79A10042C7B2 /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
 				CEB4BB38293A035E0042C7B2 /* MainViewController.swift */,
@@ -105,33 +145,47 @@
 			path = MainViewController;
 			sourceTree = "<group>";
 		};
-		CEB4BB5A293D2CAB0042C7B2 /* Enums */ = {
+		CEB4BB6A293D79B00042C7B2 /* WorldView */ = {
 			isa = PBXGroup;
 			children = (
-				CEB4BB5F293D2D2C0042C7B2 /* GamingStatus.swift */,
-				CEB4BB4C293BEED60042C7B2 /* CellState.swift */,
-				CEB4BB5D293D2D0D0042C7B2 /* ViewData.swift */,
+				CEB4BB48293A0BB90042C7B2 /* WorldView.swift */,
+				CEB4BB54293CD06E0042C7B2 /* WorldViewViewModel.swift */,
 			);
-			path = Enums;
+			path = WorldView;
 			sourceTree = "<group>";
 		};
-		CEB4BB5B293D2CBB0042C7B2 /* Managers */ = {
+		CEB4BB6B293D79BF0042C7B2 /* GameManagementInterfaceView */ = {
 			isa = PBXGroup;
 			children = (
-				CEB4BB4A293A9FA30042C7B2 /* WorldManager.swift */,
-				CEB4BB52293CB9BD0042C7B2 /* KeyCoderForCell.swift */,
-				CEB4BB62293D2D620042C7B2 /* DataToPresent.swift */,
+				CEB4BB64293D3C400042C7B2 /* GameManagementInterfaceView.swift */,
 			);
-			path = Managers;
+			path = GameManagementInterfaceView;
 			sourceTree = "<group>";
 		};
-		CEB4BB5C293D2CC60042C7B2 /* Protocols */ = {
+		CEB4BB6C293D79E00042C7B2 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				CEB4BB50293C09820042C7B2 /* WorldViewViewModelProtocol.swift */,
-				CEB4BB56293CD5830042C7B2 /* MainViewViewModelProtocol.swift */,
+				CEB4BB3D293A03600042C7B2 /* Assets.xcassets */,
+				CEB4BB42293A03600042C7B2 /* Info.plist */,
 			);
-			path = Protocols;
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		CEB4BB6D293DC47E0042C7B2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEB4BB62293D2D620042C7B2 /* AllDataAboutWorldToPresent.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CEB4BB6E293DD33E0042C7B2 /* MainVC Module */ = {
+			isa = PBXGroup;
+			children = (
+				CEB4BB69293D79A10042C7B2 /* MainViewController */,
+				CEB4BB58293D2C730042C7B2 /* Views */,
+			);
+			path = "MainVC Module";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,7 +258,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB4BB57293CD5830042C7B2 /* MainViewViewModelProtocol.swift in Sources */,
-				CEB4BB5E293D2D0D0042C7B2 /* ViewData.swift in Sources */,
+				CEB4BB65293D3C400042C7B2 /* GameManagementInterfaceView.swift in Sources */,
+				CEB4BB5E293D2D0D0042C7B2 /* WorldState.swift in Sources */,
 				CEB4BB51293C09820042C7B2 /* WorldViewViewModelProtocol.swift in Sources */,
 				CEB4BB53293CB9BD0042C7B2 /* KeyCoderForCell.swift in Sources */,
 				CEB4BB39293A035E0042C7B2 /* MainViewController.swift in Sources */,
@@ -212,11 +267,12 @@
 				CEB4BB4D293BEED60042C7B2 /* CellState.swift in Sources */,
 				CEB4BB4B293A9FA30042C7B2 /* WorldManager.swift in Sources */,
 				CEB4BB49293A0BB90042C7B2 /* WorldView.swift in Sources */,
-				CEB4BB63293D2D620042C7B2 /* DataToPresent.swift in Sources */,
+				CEB4BB63293D2D620042C7B2 /* AllDataAboutWorldToPresent.swift in Sources */,
 				CEB4BB35293A035E0042C7B2 /* AppDelegate.swift in Sources */,
 				CEB4BB60293D2D2C0042C7B2 /* GamingStatus.swift in Sources */,
 				CEB4BB55293CD06E0042C7B2 /* WorldViewViewModel.swift in Sources */,
 				CEB4BB37293A035E0042C7B2 /* SceneDelegate.swift in Sources */,
+				CEB4BB67293D71C30042C7B2 /* MainViewControllerState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,9 +402,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9623LKA7FR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Conway's Game/Info.plist";
+				INFOPLIST_FILE = "Conway's Game/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -373,9 +430,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9623LKA7FR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Conway's Game/Info.plist";
+				INFOPLIST_FILE = "Conway's Game/SupportingFiles/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

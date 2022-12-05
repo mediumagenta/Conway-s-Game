@@ -10,8 +10,17 @@ import UIKit
 
 final class WorldView: UIView {
     
+    //MARK: - Model
     var viewModel: WorldViewViewModelProtocol!
     
+    var dataToPresent: WorldState = .initial {
+        didSet {
+            updateView()
+        }
+    }
+    
+    
+    //MARK: - Init
     override init(frame: CGRect) {
         viewModel = WorldViewViewModel()
         super.init(frame: frame)
@@ -21,12 +30,8 @@ final class WorldView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var dataToPresent: ViewData = .initial {
-        didSet {
-            updateView()
-        }
-    }
     
+    //MARK: - Update WorldView methods
     private func updateView() {
         switch dataToPresent {
         case .initial:
@@ -42,7 +47,7 @@ final class WorldView: UIView {
         }
     }
     
-    private func showStartWorldWithRandomLifeCells(worldAreaSize size: Int, dataToPresent data: DataToPresent) {
+    private func showStartWorldWithRandomLifeCells(worldAreaSize size: Int, dataToPresent data: AllDataAboutWorldToPresent) {
         layer.sublayers?.removeAll()
         let widthAndHeightSize = bounds.width / CGFloat(size)
         for y in 0..<size {
@@ -53,7 +58,7 @@ final class WorldView: UIView {
         }
     }
     
-    private func makeOneStepInWorld(worldAreaSize size: Int, dataToPresent data: DataToPresent) {
+    private func makeOneStepInWorld(worldAreaSize size: Int, dataToPresent data: AllDataAboutWorldToPresent) {
         let widthAndHeightSize = bounds.width / CGFloat(size)
         if let sublayersCount = layer.sublayers?.count, sublayersCount > 0 {
             layer.sublayers?.forEach({ layer in
@@ -83,24 +88,28 @@ final class WorldView: UIView {
         var startColorAnimating: CGColor
         var durationOfAnimation: CFTimeInterval = 0.2
         
+        let whiteColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1).cgColor
+        let blackColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1).cgColor
+        
         switch status{
         case .wasWhiteBecameWhite:
-            fillColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1).cgColor
-            startColorAnimating = fillColor
+            startColorAnimating = whiteColor
+            fillColor = whiteColor
             durationOfAnimation = 0
         case .wasWhiteBecameBlack:
-            fillColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1).cgColor
-            startColorAnimating = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1).cgColor
+            startColorAnimating = whiteColor
+            fillColor = blackColor
         case .wasBlackBecameWhite:
-            fillColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1).cgColor
-            startColorAnimating = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1).cgColor
+            startColorAnimating = blackColor
+            fillColor = whiteColor
         case .wasBlackBecameBlack:
-            fillColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1).cgColor
-            startColorAnimating = fillColor
+            startColorAnimating = blackColor
+            fillColor = blackColor
             durationOfAnimation = 0
         case .errorFindInDictionary:
-            fillColor = UIColor.white.cgColor
-            startColorAnimating = fillColor
+            //Не должно срабатывать. Для поиска ошибок
+            startColorAnimating = UIColor.red.cgColor
+            fillColor = UIColor.red.cgColor
             durationOfAnimation = 0
         }
 
@@ -110,12 +119,7 @@ final class WorldView: UIView {
         fillColorAnimation.fromValue = startColorAnimating
         fillColorAnimation.toValue = fillColor
         rectangle.add(fillColorAnimation, forKey: "fillColor")
-        rectangle.name = KeyCoderForCell.shared.stringKeyForCell(x: x, y: y)
+        rectangle.name = viewModel.createStringKeyToLayerName(x: x, y: y)
         layer.addSublayer(rectangle)
     }
-
-    
-    //MARK: - А вот все, что ниже - нужно пихать в модель
-    
-
 }

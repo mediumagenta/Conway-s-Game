@@ -8,7 +8,8 @@
 import Foundation
 
 final class WorldViewViewModel: WorldViewViewModelProtocol {
-    func checkInfoOfCell(dataToPresent data: DataToPresent, x: Int, y: Int) -> (status: CellState, hasChanges: Bool) {
+    
+    func checkInfoOfCell(dataToPresent data: AllDataAboutWorldToPresent, x: Int, y: Int) -> (status: CellState, hasChanges: Bool) {
         let stringKey = KeyCoderForCell.shared.stringKeyForCell(x: x, y: y)
         if let answer = data.dictionaryOfCellsInWorld[stringKey] {
             if answer == .wasBlackBecameWhite || answer == .wasWhiteBecameBlack {
@@ -21,9 +22,13 @@ final class WorldViewViewModel: WorldViewViewModelProtocol {
         }
     }
     
-    func checkInfoOfCellOfStringKey(key: String, dataToPresent data: DataToPresent) -> (status: CellState, hasChanges: Bool, x: Int, y: Int){
+    func checkInfoOfCellOfStringKey(key: String, dataToPresent data: AllDataAboutWorldToPresent) -> (status: CellState, hasChanges: Bool, x: Int, y: Int){
         let intCoordinates = KeyCoderForCell.shared.intCoordinateFromStringKey(stringKeyForCell: key)
         let cellInfo = checkInfoOfCell(dataToPresent: data, x: intCoordinates.x, y: intCoordinates.y)
         return (cellInfo.status, cellInfo.hasChanges, intCoordinates.x, intCoordinates.y)
+    }
+    
+    func createStringKeyToLayerName(x: Int, y: Int) -> String {
+        return KeyCoderForCell.shared.stringKeyForCell(x: x, y: y)
     }
 }

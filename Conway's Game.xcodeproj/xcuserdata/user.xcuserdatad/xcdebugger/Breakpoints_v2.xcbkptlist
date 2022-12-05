@@ -46,8 +46,8 @@
             filePath = "Conway&apos;s Game/MainViewController/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "addRandomLifeCells()"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,16 +55,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AD78BFD7-9115-42A2-9D32-6D886A7F57DB"
+            uuid = "79492F85-9768-4163-9CCB-257D80A1538E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Conway&apos;s Game/MainViewController/MainWorldViewViewModel.swift"
+            filePath = "Conway&apos;s Game/Views/WorldView/WorldView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "placeRandomLifeCell()"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "showStartWorldWithRandomLifeCells(worldAreaSize:dataToPresent:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9F484401-2996-492C-8E12-8F40FE43A773"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Conway&apos;s Game/Views/GameManagementInterfaceView/GameManagementInterfaceView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "disableElements()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

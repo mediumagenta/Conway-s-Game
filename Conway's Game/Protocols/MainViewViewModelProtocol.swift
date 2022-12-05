@@ -8,12 +8,15 @@
 import Foundation
 
 protocol MainWorldViewViewModelProtocol {
-    var updateViewData: ((ViewData) -> ())? {get set}
-    var worldAreaSize: Int {get set}
+    var updatedDataToWorld: ((WorldState) -> ())? {get set}
+    var updateMainVC: ((MainViewControllerState) -> ())? {get set}
     var numOfRandomLifeCells: Int {get set}
     var gamingStatus: GamingStatus {get set}
 
     func placeRandomLifeCell()
-    func makeStep()
     func changeStatusGame()
+    func valueChangedAreaSize(toSize size: Float)
+    func finishChangeAreaSize(toSize size: Int)
+    func changeRandomLifeCellsCoefficient(coefficient: Float)
+    func changeAnimationSpeedCoefficient(coefficient: Float)
 }

@@ -10,9 +10,11 @@ import Foundation
 struct WorldManager {
     
     private var dictionaryOfCellsInWorld: [String: CellState] = [:]
+    private var arrayOfDataDictionaries: [[String: CellState]] = [[:]]
     private var worldAreaSize: Int
     private var numOfRandomLifeCells: Int
-    var dataToPresent = DataToPresent()
+    var dataToPresent = AllDataAboutWorldToPresent()
+    var stopFlag = false
 
     init(sizeOfWorldArea: Int, numOfRandomLifeCells: Int) {
         worldAreaSize = sizeOfWorldArea
@@ -27,26 +29,20 @@ struct WorldManager {
     
     mutating func changeWorldAreaSize(to newSize: Int) {
         worldAreaSize = newSize
+        createRandomLifeCells(numberOfCells: numOfRandomLifeCells)
     }
     
     mutating func changeNumOfRandomCells(to newNum: Int) {
         numOfRandomLifeCells = newNum
     }
-
-    mutating func clearAllWorld() {
-        for y in 0..<worldAreaSize {
-            for x in 0..<worldAreaSize {
-                let stringKey = KeyCoderForCell.shared.stringKeyForCell(x: x, y: y)
-                dictionaryOfCellsInWorld[stringKey] = .wasWhiteBecameWhite
-            }
-        }
-    }
     
     mutating func createRandomLifeCells(numberOfCells count: Int) {
         clearAllWorld()
+        stopFlag = false
+        arrayOfDataDictionaries = [[:]]
         for _ in 1...count {
-            let xRandom = Int.random(in: 2..<worldAreaSize-2)
-            let yRandom = Int.random(in: 2..<worldAreaSize-2)
+            let xRandom = Int.random(in: 0..<worldAreaSize)
+            let yRandom = Int.random(in: 0..<worldAreaSize)
             let stringKey = KeyCoderForCell.shared.stringKeyForCell(x: xRandom, y: yRandom)
             dictionaryOfCellsInWorld[stringKey] = .wasWhiteBecameBlack
         }
@@ -75,6 +71,16 @@ struct WorldManager {
         }
         dictionaryOfCellsInWorld = updatedDictionaryOfLivingCells
         updateDataToPresent()
+        checkGameStop()
+    }
+    
+    private mutating func clearAllWorld() {
+        for y in 0..<worldAreaSize {
+            for x in 0..<worldAreaSize {
+                let stringKey = KeyCoderForCell.shared.stringKeyForCell(x: x, y: y)
+                dictionaryOfCellsInWorld[stringKey] = .wasWhiteBecameWhite
+            }
+        }
     }
     
     private func livingNeighborsAround(x: Int, y: Int) -> Int {
@@ -120,7 +126,7 @@ struct WorldManager {
         }
     }
     
-    func checkStatusOfCell(x: Int, y: Int) -> CellState {
+    private func checkStatusOfCell(x: Int, y: Int) -> CellState {
         let stringKey = KeyCoderForCell.shared.stringKeyForCell(x: x, y: y)
         if let answer = dictionaryOfCellsInWorld [stringKey] {
             return answer
@@ -129,4 +135,32 @@ struct WorldManager {
             return .errorFindInDictionary
         }
     }
+    
+    private mutating func checkGameStop() {
+        switch arrayOfDataDictionaries.count {
+        case 0:
+            arrayOfDataDictionaries.append(dictionaryOfCellsInWorld)
+        case 1:
+            arrayOfDataDictionaries.append(dictionaryOfCellsInWorld)
+            if arrayOfDataDictionaries[0] == arrayOfDataDictionaries[1] {
+                stopFlag = true
+            }
+        case 2:
+            arrayOfDataDictionaries.append(dictionaryOfCellsInWorld)
+            if arrayOfDataDictionaries[0] == arrayOfDataDictionaries[1] ||
+                arrayOfDataDictionaries[0] == arrayOfDataDictionaries[2] ||
+                arrayOfDataDictionaries[1] == arrayOfDataDictionaries[2] {
+                stopFlag = true
+            }
+        default:
+            arrayOfDataDictionaries.remove(at: 0)
+            arrayOfDataDictionaries.append(dictionaryOfCellsInWorld)
+            if arrayOfDataDictionaries[0] == arrayOfDataDictionaries[1] ||
+                arrayOfDataDictionaries[0] == arrayOfDataDictionaries[2] ||
+                arrayOfDataDictionaries[1] == arrayOfDataDictionaries[2] {
+                stopFlag = true
+            }
+        }
+    }
+    
 }

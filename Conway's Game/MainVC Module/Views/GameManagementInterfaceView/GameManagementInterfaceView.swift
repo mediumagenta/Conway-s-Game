@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameManagementInterfaceView: UIView {
+final class GameManagementInterfaceView: UIView {
     
     //MARK: - UI Elements
     //MARK: Кнопки
